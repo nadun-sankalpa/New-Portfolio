@@ -223,4 +223,119 @@ window.addEventListener("scroll", () => {
   progressBar.style.width = scrollPercent + "%"
 })
 
+// Animate skills bars and circles on load
+window.addEventListener('DOMContentLoaded', () => {
+    // Animate skill bars
+    document.querySelectorAll('.skill-bar').forEach(bar => {
+        const fill = bar.querySelector('.bar-fill');
+        const width = bar.getAttribute('data-width');
+        setTimeout(() => {
+            fill.style.width = width + '%';
+        }, 400);
+    });
+    // Animate circle SVGs
+    document.querySelectorAll('.circle-skill').forEach(circleSkill => {
+        const percent = circleSkill.getAttribute('data-percent');
+        const circle = circleSkill.querySelector('.circle-anim');
+        if (circle && percent) {
+            const offset = 251.2 - (251.2 * parseInt(percent, 10) / 100);
+            setTimeout(() => {
+                circle.style.strokeDashoffset = offset;
+            }, 700);
+        }
+    });
+});
+
+// Modern Contact Form Animation Logic
+const modernForm = document.getElementById('modernContactForm');
+const btn = modernForm.querySelector('.submit-btn');
+const btnText = btn.querySelector('.btn-text');
+const btnLoader = btn.querySelector('.btn-loader');
+const btnSuccess = btn.querySelector('.btn-success');
+const successMsg = document.getElementById('formSuccessMessage');
+
+modernForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Start loader animation
+  btnText.style.display = 'none';
+  btnLoader.style.display = 'inline-block';
+  btnSuccess.style.display = 'none';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btnLoader.style.display = 'none';
+    btnSuccess.style.display = 'inline-block';
+    btn.classList.add('success');
+    successMsg.style.display = 'block';
+    modernForm.reset();
+    setTimeout(() => {
+      btnText.style.display = 'inline-block';
+      btnSuccess.style.display = 'none';
+      btn.classList.remove('success');
+      btn.disabled = false;
+      successMsg.style.display = 'none';
+    }, 2300);
+  }, 1400);
+});
+
+// --- Footer Live Particle Animation ---
+(function() {
+  const canvas = document.querySelector('.footer-particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = 100;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = 100;
+  }
+  window.addEventListener('resize', resize);
+
+  const particles = [];
+  const colors = ['#facc15', '#fde047', '#fffbe7'];
+  for (let i = 0; i < 36; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: 2 + Math.random() * 2.5,
+      d: 1 + Math.random() * 2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 0.6 + Math.random() * 0.3,
+      dx: -0.4 + Math.random() * 0.8,
+      dy: -0.2 + Math.random() * 0.4,
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (const p of particles) {
+      ctx.globalAlpha = p.alpha;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 12;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+    ctx.globalAlpha = 1;
+  }
+  function update() {
+    for (const p of particles) {
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0) p.x = w;
+      if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h;
+      if (p.y > h) p.y = 0;
+    }
+  }
+  function loop() {
+    draw();
+    update();
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
 console.log("🚀 Nadun Sankalpa Portfolio Loaded Successfully!")
