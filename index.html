@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Narun Sankalpa - Portfolio</title>
+    <title>Nadun Sankalpa - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -12,174 +12,337 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: #000000; /* Ensuring pure black background */
-            color: white;
+            /* Updated font to iPhone's San Francisco font family with bold weight */
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 600;
+            background-color: #000000;
+            color: #ffffff;
             overflow-x: hidden;
-            height: 100vh;
+            line-height: 1.6;
+            position: relative;
         }
 
-        /* Header */
-        .header {
+        /* Changed blue background effects to green */
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blue-orb {
+            position: absolute;
+            border-radius: 50%;
+            /* Updated blue gradient to green gradient */
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, rgba(34, 197, 94, 0.1) 50%, transparent 100%);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .blue-orb:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .blue-orb:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -7s;
+        }
+
+        .blue-orb:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            bottom: 10%;
+            left: 20%;
+            animation-delay: -14s;
+        }
+
+        .blue-orb:nth-child(4) {
+            width: 150px;
+            height: 150px;
+            top: 30%;
+            right: 30%;
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(30px, -30px) scale(1.1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translate(20px, -10px) scale(1.05);
+                opacity: 0.6;
+            }
+        }
+
+        /* Navigation */
+        .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
-            background: rgba(0, 0, 0, 0.3);
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00ff41;
-            text-shadow: 0 0 20px #00ff41;
-            animation: glow 2s ease-in-out infinite alternate;
+        .nav-brand {
+            font-size: 18px;
+            font-weight: 800; /* Made brand text extra bold */
+            letter-spacing: 2px;
+            color: #ffffff;
         }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #00ff41; }
-            to { text-shadow: 0 0 30px #00ff41, 0 0 40px #00ff41; }
-        }
-
-        .nav {
+        /* Added navigation menu items */
+        .nav-menu {
             display: flex;
-            gap: 30px;
             list-style: none;
+            gap: 40px;
         }
 
-        .nav a {
-            color: white;
+        .nav-menu li a {
+            color: #ffffff;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 700; /* Made nav links bold */
+            transition: color 0.3s ease;
             position: relative;
         }
 
-        .nav a:hover {
-            color: #00ff41;
-            text-shadow: 0 0 10px #00ff41;
+        .nav-menu li a:hover {
+            color: #22c55e; /* Changed hover color from blue to green */
         }
 
-        .search-bar {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 10px 20px;
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #22c55e; /* Changed underline color from blue to green */
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu li a:hover::after {
+            width: 100%;
+        }
+
+        .contact-btn {
+            background: #22c55e; /* Changed button background from blue to green */
             color: white;
-            backdrop-filter: blur(10px);
-            width: 200px;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700; /* Made button text bold */
+            transition: all 0.3s ease;
         }
 
-        .search-bar::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+        .contact-btn:hover {
+            background: #16a34a; /* Changed hover color from blue to darker green */
+            transform: translateY(-2px);
         }
 
-        /* Main Content */
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0;
             position: relative;
-            overflow: hidden;
         }
 
-        /* Background Effects - Subtle Sea Wave Animations */
-        .bg-rays {
-            position: absolute;
+        /* Removed background text behind robot */
+
+        .hero-title {
+            font-size: 6rem;
+            font-weight: 900; /* Made hero title extra bold */
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            line-height: 1.2;
+            color: #22c55e; /* Changed subtitle color from blue to green */
+            font-weight: 700; /* Made subtitle bold */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 3D Model Container */
+        .model-container {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            border-radius: 0;
             overflow: hidden;
-            background: #000000; /* Added solid black background */
+            box-shadow: none;
+            z-index: 1;
+            display: block;
+            opacity: 1;
         }
 
-        /* Enhanced sea waves with slightly more green visibility */
-        .sea-wave {
+        /* Scroll Indicator */
+        .scroll-indicator {
             position: absolute;
-            width: 100%;
-            height: 60px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(0, 255, 65, 0.12) 25%, 
-                rgba(0, 255, 65, 0.18) 50%, 
-                rgba(0, 255, 65, 0.12) 75%, 
-                transparent 100%);
-            border-radius: 50px;
-            animation: seaWaveMove 12s ease-in-out infinite;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
         }
 
-        .sea-wave:nth-child(1) {
-            top: 20%;
-            animation-delay: 0s;
+        .scroll-arrow {
+            width: 30px;
+            height: 30px;
+            border-right: 2px solid #22c55e; /* Changed arrow color from blue to green */
+            border-bottom: 2px solid #22c55e; /* Changed arrow color from blue to green */
+            transform: rotate(45deg);
         }
 
-        .sea-wave:nth-child(2) {
-            top: 50%;
-            animation-delay: -4s;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(0, 255, 65, 0.10) 25%, 
-                rgba(0, 255, 65, 0.15) 50%, 
-                rgba(0, 255, 65, 0.10) 75%, 
-                transparent 100%);
-        }
-
-        .sea-wave:nth-child(3) {
-            top: 80%;
-            animation-delay: -8s;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(0, 255, 65, 0.08) 25%, 
-                rgba(0, 255, 65, 0.12) 50%, 
-                rgba(0, 255, 65, 0.08) 75%, 
-                transparent 100%);
-        }
-
-        @keyframes seaWaveMove {
-            0%, 100% {
-                transform: translateX(-100%) scaleY(1);
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
             }
-            50% {
-                transform: translateX(100%) scaleY(1.2);
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
             }
         }
 
-        /* Particles */
-        .particles {
+        /* Added more green animated elements */
+        .blue-particle {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            background: rgba(0, 255, 65, 0.3); /* Reduced particle opacity */
+            width: 4px;
+            height: 4px;
+            background: #22c55e;
             border-radius: 50%;
-            animation: float 15s infinite linear; /* Slower particle movement */
-            opacity: 0.3;
+            animation: particle-float 15s infinite linear;
         }
 
-        @keyframes float {
+        .blue-particle.large {
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #22c55e, rgba(34, 197, 94, 0.5));
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+        }
+
+        .blue-particle.trail {
+            width: 3px;
+            height: 20px;
+            background: linear-gradient(to bottom, #22c55e, transparent);
+            border-radius: 50%;
+        }
+
+        .blue-wave {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            /* Updated wave gradient from blue to green */
+            background: radial-gradient(circle, transparent 40%, rgba(34, 197, 94, 0.05) 50%, transparent 60%);
+            animation: wave-pulse 8s infinite ease-in-out;
+        }
+
+        .blue-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            /* Updated glow gradient from blue to green */
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.05) 30%, transparent 70%);
+            border-radius: 50%;
+            animation: glow-pulse 12s infinite ease-in-out;
+        }
+
+        .green-streak {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #22c55e, transparent);
+            animation: streak-fall 8s infinite linear;
+        }
+
+        .green-ring {
+            position: absolute;
+            border: 2px solid rgba(34, 197, 94, 0.4);
+            border-radius: 50%;
+            animation: ring-pulse 6s infinite ease-in-out;
+        }
+
+        .green-lightning {
+            position: absolute;
+            width: 3px;
+            height: 200px;
+            background: linear-gradient(45deg, #22c55e, #16a34a, #22c55e);
+            animation: lightning-flash 4s infinite ease-in-out;
+            transform-origin: top;
+        }
+
+        .green-spiral {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid transparent;
+            border-top: 2px solid rgba(34, 197, 94, 0.6);
+            border-radius: 50%;
+            animation: spiral-rotate 10s infinite linear;
+        }
+
+        .green-energy-ball {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #22c55e, rgba(34, 197, 94, 0.3));
+            border-radius: 50%;
+            animation: energy-bounce 5s infinite ease-in-out;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+        }
+
+        .green-wave-line {
+            position: absolute;
+            width: 300px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #22c55e, transparent);
+            animation: wave-sweep 7s infinite ease-in-out;
+        }
+
+        @keyframes particle-float {
             0% {
                 transform: translateY(100vh) translateX(0);
                 opacity: 0;
             }
             10% {
-                opacity: 0.3;
+                opacity: 1;
             }
             90% {
-                opacity: 0.3;
+                opacity: 1;
             }
             100% {
                 transform: translateY(-100px) translateX(100px);
@@ -187,268 +350,31 @@
             }
         }
 
-        /* Hero Text */
-        .hero-content {
-            position: relative;
-            text-align: center;
-            z-index: 1;
-        }
-
-        .hero-text {
-            position: relative;
-            display: inline-block;
-        }
-
-        .name-line1 {
-            font-size: clamp(80px, 15vw, 200px);
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            line-height: 0.9;
-            color: #00ff41;
-            text-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
-            animation: slideInLeft 1s ease-out;
-        }
-
-        .name-line2 {
-            font-size: clamp(80px, 15vw, 200px);
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            line-height: 0.9;
-            color: white;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            animation: slideInRight 1s ease-out 0.3s both;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                transform: translateX(-100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* Profile Image - IN FRONT OF TEXT */
-        .profile-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 1000px;
-            height: 1200px;
-            z-index: 100; /* Higher than text to appear in front */
-            animation: imageFloat 1.5s ease-out 0.8s both;
-        }
-
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-            filter: drop-shadow(0 0 30px rgba(0, 255, 65, 0.3));
-            transition: all 0.3s ease;
-        }
-
-        .profile-image:hover img {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 40px rgba(0, 255, 65, 0.5));
-        }
-
-        @keyframes imageFloat {
-            from {
-                transform: translate(-50%, -50%) scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* Description */
-        .description {
-            position: absolute;
-            bottom: 30px; /* moved description further down from 100px to 30px */
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 600px;
-            text-align: center;
-            font-size: 16px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
-            animation: fadeInUp 1s ease-out 1.2s both;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 25px 35px;
-            border-radius: 15px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 255, 65, 0.3);
-            z-index: 200;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                transform: translateX(-50%) translateY(30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Green Circular Animations */
-        .green-circle {
-            position: absolute;
-            border: 1px solid rgba(0, 255, 65, 0.3);
-            border-radius: 50%;
-            animation: circleFloat 8s ease-in-out infinite;
-        }
-
-        .circle-1 {
-            width: 100px;
-            height: 100px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .circle-2 {
-            width: 150px;
-            height: 150px;
-            top: 60%;
-            right: 15%;
-            animation-delay: 1s;
-        }
-
-        .circle-3 {
-            width: 80px;
-            height: 80px;
-            top: 30%;
-            right: 25%;
-            animation-delay: 2s;
-        }
-
-        .circle-4 {
-            width: 120px;
-            height: 120px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 3s;
-        }
-
-        @keyframes circleFloat {
+        @keyframes wave-pulse {
             0%, 100% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.2;
+                transform: scale(0.8) rotate(0deg);
+                opacity: 0.1;
             }
             50% {
-                transform: translateY(-10px) rotate(90deg);
-                opacity: 0.4;
+                transform: scale(1.2) rotate(180deg);
+                opacity: 0.3;
             }
         }
 
-        /* Green Pulsing Dots */
-        .green-dot {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(0, 255, 65, 0.6);
-            border-radius: 50%;
-            animation: dotPulse 3s ease-in-out infinite;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
-        }
-
-        .dot-1 { top: 15%; left: 20%; animation-delay: 0s; }
-        .dot-2 { top: 25%; right: 30%; animation-delay: 0.5s; }
-        .dot-3 { top: 70%; left: 15%; animation-delay: 1s; }
-        .dot-4 { top: 40%; right: 20%; animation-delay: 1.5s; }
-        .dot-5 { bottom: 30%; left: 30%; animation-delay: 2s; }
-        .dot-6 { bottom: 15%; right: 25%; animation-delay: 2.5s; }
-
-        @keyframes dotPulse {
+        @keyframes glow-pulse {
             0%, 100% {
-                transform: scale(1);
-                opacity: 0.3;
+                transform: scale(0.5);
+                opacity: 0.2;
             }
             50% {
                 transform: scale(1.5);
-                opacity: 0.8;
+                opacity: 0.6;
             }
         }
 
-        /* Green Corner Glows */
-        .corner-glow {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: cornerGlow 6s ease-in-out infinite;
-        }
-
-        .glow-1 {
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-
-        .glow-2 {
-            top: -100px;
-            right: -100px;
-            animation-delay: 2s;
-        }
-
-        .glow-3 {
-            bottom: -100px;
-            left: -100px;
-            animation-delay: 4s;
-        }
-
-        .glow-4 {
-            bottom: -100px;
-            right: -100px;
-            animation-delay: 1s;
-        }
-
-        @keyframes cornerGlow {
-            0%, 100% {
-                opacity: 0.2;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.4;
-                transform: scale(1.2);
-            }
-        }
-
-        /* Floating Green Sparkles */
-        .sparkle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(0, 255, 65, 0.8);
-            border-radius: 50%;
-            animation: sparkleFloat 8s linear infinite;
-            box-shadow: 0 0 6px rgba(0, 255, 65, 0.6);
-        }
-
-        @keyframes sparkleFloat {
+        @keyframes streak-fall {
             0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg);
+                transform: translateY(-100px) translateX(0);
                 opacity: 0;
             }
             10% {
@@ -458,282 +384,1006 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100px) translateX(50px) rotate(360deg);
+                transform: translateY(100vh) translateX(50px);
                 opacity: 0;
             }
         }
 
-        /* Programming Language Logos Floating Animation */
-        .programming-logos {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
+        @keyframes ring-pulse {
+            0%, 100% {
+                transform: scale(0.5);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(2);
+                opacity: 0.2;
+            }
         }
 
-        .logo-icon {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            opacity: 0.4;
-            filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.5));
-            animation: logoFloat 20s linear infinite;
+        @keyframes lightning-flash {
+            0%, 90%, 100% {
+                opacity: 0;
+                transform: scaleY(0);
+            }
+            5%, 85% {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+            10%, 80% {
+                opacity: 0.7;
+                transform: scaleY(0.8);
+            }
         }
 
-        .logo-icon svg {
-            width: 100%;
-            height: 100%;
-            fill: rgba(0, 255, 65, 0.6);
+        @keyframes spiral-rotate {
+            0% {
+                transform: rotate(0deg) scale(0.5);
+                opacity: 0.3;
+            }
+            50% {
+                transform: rotate(180deg) scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotate(360deg) scale(0.5);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes energy-bounce {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            }
+            25% {
+                transform: translateY(-30px) scale(1.2);
+                box-shadow: 0 0 30px rgba(34, 197, 94, 0.8);
+            }
+            50% {
+                transform: translateY(0) scale(0.8);
+                box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+            }
+            75% {
+                transform: translateY(20px) scale(1.1);
+                box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+            }
+        }
+
+        @keyframes wave-sweep {
+            0% {
+                transform: translateX(-100%) scaleX(0);
+                opacity: 0;
+            }
+            20% {
+                transform: translateX(-50%) scaleX(1);
+                opacity: 1;
+            }
+            80% {
+                transform: translateX(50%) scaleX(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100%) scaleX(0);
+                opacity: 0;
+            }
+        }
+
+        /* Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: #22c55e; /* Changed heading color from blue to green */
+            font-weight: 800; /* Made headings extra bold */
+        }
+
+        /* About Section */
+        .about {
+            /* Made about section full screen height */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: -10%;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            /* Changed border colors from blue to green */
+            border-top: 2px solid rgba(34, 197, 94, 0.3);
+            border-bottom: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Added padding for better spacing in full screen */
+            padding: 0 50px;
+        }
+
+        .about-image-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .about-image {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #22c55e;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Enhanced profile name display inside circle */
+        .profile-name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            z-index: 3;
+            white-space: nowrap;
+        }
+
+        .profile-ring {
+            position: absolute;
+            border: 2px solid rgba(34, 197, 94, 0.4);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .profile-ring:nth-child(2) {
+            width: 420px;
+            height: 420px;
+            animation: ring-rotate 15s linear infinite;
+            border-top-color: #22c55e;
+        }
+
+        .profile-ring:nth-child(3) {
+            width: 450px;
+            height: 450px;
+            animation: ring-rotate 20s linear infinite reverse;
+            border-right-color: #22c55e;
+        }
+
+        .profile-ring:nth-child(4) {
+            width: 480px;
+            height: 480px;
+            animation: ring-pulse-rotate 12s ease-in-out infinite;
+            border-left-color: #22c55e;
+        }
+
+        .profile-ring:nth-child(5) {
+            width: 510px;
+            height: 510px;
+            animation: ring-rotate 25s linear infinite;
+            border-bottom-color: #22c55e;
+        }
+
+        /* Enhanced about text styling for full screen layout */
+        .about-text {
+            flex: 1;
+            max-width: 600px;
+            margin-left: 10%;
+        }
+
+        .about-text h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-align: left;
+            color: #22c55e;
+            font-weight: 800;
+        }
+
+        .about-subtitle {
+            font-size: 1.8rem;
+            color: #22c55e;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            margin-right: -100%;
+            text-align: left;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .read-more-btn {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .logo-icon:hover svg {
-            fill: rgba(0, 255, 65, 0.9);
-            filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.8));
+        .read-more-btn:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
         }
 
-        @keyframes logoFloat {
-            0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            5% {
-                opacity: 0.4;
-            }
-            95% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px) rotate(360deg);
-                opacity: 0;
-            }
+        /* Services Section */
+        .services {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .logo-1 { left: 10%; animation-delay: 0s; animation-duration: 25s; }
-        .logo-2 { left: 20%; animation-delay: 3s; animation-duration: 22s; }
-        .logo-3 { left: 30%; animation-delay: 6s; animation-duration: 28s; }
-        .logo-4 { left: 40%; animation-delay: 9s; animation-duration: 24s; }
-        .logo-5 { left: 50%; animation-delay: 12s; animation-duration: 26s; }
-        .logo-6 { left: 60%; animation-delay: 15s; animation-duration: 23s; }
-        .logo-7 { left: 70%; animation-delay: 18s; animation-duration: 27s; }
-        .logo-8 { left: 80%; animation-delay: 21s; animation-duration: 25s; }
-        .logo-9 { left: 90%; animation-delay: 24s; animation-duration: 29s; }
-        .logo-10 { left: 15%; animation-delay: 27s; animation-duration: 21s; }
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
 
-        /* Responsive */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #111111, #0a0a0a);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            border-color: #22c55e;
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .service-card:hover .service-icon::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover .service-title {
+            color: #22c55e;
+        }
+
+        .service-description {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .service-features li {
+            color: #aaaaaa;
+            margin: 8px 0;
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.9rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .service-btn {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-btn:hover::before {
+            left: 100%;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .service-card:nth-child(1) {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .service-card:nth-child(2) {
+            animation: float 6s ease-in-out infinite 2s;
+        }
+
+        .service-card:nth-child(3) {
+            animation: float 6s ease-in-out infinite 4s;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            /* Changed border colors from blue to green */
+            border-top: 2px solid rgba(34, 197, 94, 0.3);
+            border-bottom: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: #000000;
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 2px solid #333333;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: #22c55e; /* Changed hover border from blue to green */
+            transform: translateY(-10px);
+            /* Changed box shadow from blue to green */
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+        }
+
+        .project-card h3 {
+            color: #22c55e; /* Changed project title color from blue to green */
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 700; /* Made project titles bold */
+        }
+
+        .project-card p {
+            opacity: 0.8;
+            font-weight: 500; /* Made project descriptions medium weight */
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 500; /* Made contact text medium weight */
+        }
+
+        .cta-button {
+            background: #22c55e; /* Changed button background from blue to green */
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700; /* Made CTA button bold */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #16a34a; /* Changed hover color from blue to darker green */
+            transform: translateY(-3px);
+            /* Changed box shadow from blue to green */
+            box-shadow: 0 15px 30px rgba(34, 197, 94, 0.4);
+        }
+
+        /* Added mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #ffffff;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .header {
+            .navbar {
                 padding: 15px 20px;
             }
-            
-            .nav {
+
+            .nav-menu {
                 display: none;
-            }
-            
-            .search-bar {
-                width: 150px;
-            }
-            
-            .profile-image {
-                width: 250px;
-                height: 320px;
-            }
-            
-            .description {
-                bottom: 50px;
-                padding: 0 20px;
-                font-size: 14px;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
             }
 
-            /* Smaller logos on mobile */
-            .logo-icon {
-                width: 30px;
-                height: 30px;
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero {
+                padding: 0;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+                letter-spacing: 4px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .about-image {
+                width: 300px;
+                height: 300px;
+            }
+
+            .profile-ring:nth-child(2) { width: 320px; height: 320px; }
+            .profile-ring:nth-child(3) { width: 340px; height: 340px; }
+            .profile-ring:nth-child(4) { width: 360px; height: 360px; }
+            .profile-ring:nth-child(5) { width: 380px; height: 380px; }
+
+            .profile-glow {
+                width: 400px;
+                height: 400px;
+            }
+
+            .about-text h2 {
+                text-align: center;
+                font-size: 3rem;
+            }
+
+            .about p {
+                text-align: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes ring-rotate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes ring-pulse-rotate {
+            0%, 100% {
+                transform: translate(-50%, -50%) rotate(0deg) scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes particle-orbit {
+            0% {
+                transform: rotate(0deg) translateX(200px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(200px) rotate(-360deg);
+            }
+        }
+
+        @keyframes profile-glow-pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.6;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">NS</div>
-        <nav>
-            <ul class="nav">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#portfolio">Resume</a></li>
-                <li><a href="#portfolio">Skills</a></li>
-            </ul>
-        </nav>
-        <input type="text" class="search-bar" placeholder="Search here">
-    </header>
+    <!-- Updated class names to reflect green theme -->
+    <div class="background-effects">
+        <div class="blue-orb"></div>
+        <div class="blue-orb"></div>
+        <div class="blue-orb"></div>
+        <div class="blue-orb"></div>
+        <div class="blue-wave" style="top: 20%; left: 10%;"></div>
+        <div class="blue-wave" style="bottom: 30%; right: 15%;"></div>
+        <div class="blue-glow" style="top: 40%; left: 60%;"></div>
+        <div class="blue-glow" style="bottom: 20%; left: 20%;"></div>
+        
+        <!-- New green animated elements -->
+        <div class="green-streak" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+        <div class="green-streak" style="top: 30%; left: 70%; animation-delay: 2s;"></div>
+        <div class="green-streak" style="top: 60%; left: 40%; animation-delay: 4s;"></div>
+        <div class="green-streak" style="top: 80%; left: 80%; animation-delay: 6s;"></div>
+        
+        <div class="green-ring" style="top: 25%; left: 15%; width: 150px; height: 150px; animation-delay: 1s;"></div>
+        <div class="green-ring" style="top: 70%; right: 20%; width: 200px; height: 200px; animation-delay: 3s;"></div>
+        <div class="green-ring" style="top: 45%; left: 60%; width: 100px; height: 100px; animation-delay: 5s;"></div>
+        
+        <div class="green-lightning" style="top: 20%; left: 30%; animation-delay: 0.5s;"></div>
+        <div class="green-lightning" style="top: 50%; right: 25%; animation-delay: 2.5s;"></div>
+        <div class="green-lightning" style="top: 75%; left: 65%; animation-delay: 4.5s;"></div>
+        
+        <div class="green-spiral" style="top: 35%; left: 25%; animation-delay: 1.5s;"></div>
+        <div class="green-spiral" style="top: 65%; right: 30%; animation-delay: 3.5s;"></div>
+        
+        <div class="green-energy-ball" style="top: 40%; left: 80%; animation-delay: 0.8s;"></div>
+        <div class="green-energy-ball" style="top: 60%; left: 10%; animation-delay: 2.8s;"></div>
+        <div class="green-energy-ball" style="top: 80%; left: 50%; animation-delay: 4.8s;"></div>
+        
+        <div class="green-wave-line" style="top: 30%; left: 0%; animation-delay: 1.2s;"></div>
+        <div class="green-wave-line" style="top: 70%; left: 20%; animation-delay: 3.2s;"></div>
+    </div>
 
-    <!-- Main Hero Section -->
-    <section class="hero">
-        <!-- Enhanced Background Effects with Green Wave Animations -->
-        <div class="bg-rays">
-            <div class="sea-wave"></div>
-            <div class="sea-wave"></div>
-            <div class="sea-wave"></div>
-            
-            <!-- Added new green animation elements -->
-            <!-- Green Pulsing Dots -->
-            <div class="green-dot dot-1"></div>
-            <div class="green-dot dot-2"></div>
-            <div class="green-dot dot-3"></div>
-            <div class="green-dot dot-4"></div>
-            <div class="green-dot dot-5"></div>
-            <div class="green-dot dot-6"></div>
-            
-            <!-- Corner Glows -->
-            <div class="corner-glow glow-1"></div>
-            <div class="corner-glow glow-2"></div>
-            <div class="corner-glow glow-3"></div>
-            <div class="corner-glow glow-4"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">NADUN SANKALPA</div>
+        <!-- Added navigation menu -->
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <button class="contact-btn" onclick="scrollToContact()">Contact</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Removed background text behind robot -->
+        
+        <!-- 3D Model Container -->
+        <div class="model-container fade-in">
+            <iframe 
+                src='https://my.spline.design/nexbotrobotcharacterconcept-2UY8ZNtmHHqZCHKxRHJNdLe2/' 
+                frameborder='0' 
+                width='100%' 
+                height='100%'>
+            </iframe>
         </div>
         
-        <!-- Added Programming Language Logos -->
-        <div class="programming-logos">
-            <!-- JavaScript -->
-            <div class="logo-icon logo-1">
-                <svg viewBox="0 0 24 24">
-                    <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/>
-                </svg>
-            </div>
-            
-            <!-- React -->
-            <div class="logo-icon logo-2">
-                <svg viewBox="0 0 24 24">
-                    <path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.36.034.47 0 .92-.014 1.36-.034-.44.572-.895 1.095-1.36 1.56-.465-.467-.92-.992-1.36-1.56z"/>
-                </svg>
-            </div>
-            
-            <!-- Python -->
-            <div class="logo-icon logo-3">
-                <svg viewBox="0 0 24 24">
-                    <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/>
-                </svg>
-            </div>
-            
-            <!-- HTML5 -->
-            <div class="logo-icon logo-4">
-                <svg viewBox="0 0 24 24">
-                    <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/>
-                </svg>
-            </div>
-            
-            <!-- CSS3 -->
-            <div class="logo-icon logo-5">
-                <svg viewBox="0 0 24 24">
-                    <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/>
-                </svg>
-            </div>
-            
-            <!-- Node.js -->
-            <div class="logo-icon logo-6">
-                <svg viewBox="0 0 24 24">
-                    <path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.072c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.570,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z"/>
-                </svg>
-            </div>
-            
-            <!-- TypeScript -->
-            <div class="logo-icon logo-7">
-                <svg viewBox="0 0 24 24">
-                    <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/>
-                </svg>
-            </div>
-            
-            <!-- Git -->
-            <div class="logo-icon logo-8">
-                <svg viewBox="0 0 24 24">
-                    <path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.6-.719.721-1.881.721-2.6 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"/>
-                </svg>
-            </div>
-            
-            <!-- MongoDB -->
-            <div class="logo-icon logo-9">
-                <svg viewBox="0 0 24 24">
-                    <path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.103-1.662-.197-2.218zm-5.336 8.195s0-8.291.275-8.29c.213 0 .49 10.695.49 10.695-.381-.045-.765-1.76-.765-2.405z"/>
-                </svg>
-            </div>
-            
-            <!-- Docker -->
-            <div class="logo-icon logo-10">
-                <svg viewBox="0 0 24 24">
-                    <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.185.185 0 00.184-.186V6.29a.185.185 0 00-.184-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.184-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.185m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/>
-                </svg>
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <!-- Replaced simple about section with new layout matching reference image -->
+            <div class="about-content fade-in">
+                <div class="about-image-container">
+                    <div class="profile-glow"></div>
+                    <img src="/images/profile.jpg" alt="Nadun Sankalpa" class="about-image">
+                    <!-- Added profile name inside the circle -->
+                   
+                    <div class="profile-ring"></div>
+                    <div class="profile-ring"></div>
+                    <div class="profile-ring"></div>
+                    <div class="profile-ring"></div>
+                    <div class="profile-particle"></div>
+                    <div class="profile-particle"></div>
+                    <div class="profile-particle"></div>
+                    <div class="profile-particle"></div>
+                    <div class="profile-particle"></div>
+                    <div class="profile-particle"></div>
+                </div>
+                <div class="about-text">
+                    <h2>About <span class="highlight">Me</span></h2>
+                    <div class="about-subtitle">Fullstack Developer</div>
+                    <p>I am a software engineering student at IJSE and currently completing my second semester. An enthusiastic student with highly motivated and studying Software Engineering at IJSE, always willing to innovate the new things which can improve the existing technology. An easy-going person with a positive attitude and good team working ability.</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
             </div>
         </div>
-        
-        <!-- Floating Particles -->
-        <div class="particles" id="particles"></div>
-        <!-- Added sparkles container -->
-        <div class="sparkles" id="sparkles"></div>
+    </section>
 
-        <!-- Hero Content -->
-        <div class="hero-content">
-            <div class="hero-text">
-                <div class="name-line1">NADUN</div>
-                <div class="name-line2">SANKALPA</div>
-            </div>
-            
-            <!-- Profile Image - IN FRONT OF TEXT -->
-            <div class="profile-image">
-                <img src="images/home.png" alt="Narun Sankalpa">
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="fade-in">My <span style="color: #22c55e;">Services</span></h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🚀</div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">
+                        Full-stack web applications with modern technologies and responsive design that delivers exceptional user experiences.
+                    </p>
+                    <ul class="service-features">
+                        <li>React & Next.js Applications</li>
+                        <li>Node.js Backend Development</li>
+                        <li>Database Integration</li>
+                        <li>API Development & Integration</li>
+                    </ul>
+                    <a href="#contact" class="service-btn">Get Started</a>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">Mobile Development</h3>
+                    <p class="service-description">
+                        Native and cross-platform mobile applications that provide seamless performance across all devices.
+                    </p>
+                    <ul class="service-features">
+                        <li>React Native Development</li>
+                        <li>iOS & Android Apps</li>
+                        <li>App Store Deployment</li>
+                        <li>Performance Optimization</li>
+                    </ul>
+                    <a href="#contact" class="service-btn">Get Started</a>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎨</div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">
+                        Beautiful, intuitive designs that enhance user engagement and create memorable digital experiences.
+                    </p>
+                    <ul class="service-features">
+                        <li>User Interface Design</li>
+                        <li>User Experience Research</li>
+                        <li>Prototyping & Wireframing</li>
+                        <li>Design System Creation</li>
+                    </ul>
+                    <a href="#contact" class="service-btn">Get Started</a>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">☁️</div>
+                    <h3 class="service-title">Cloud Solutions</h3>
+                    <p class="service-description">
+                        Scalable cloud infrastructure and deployment solutions that ensure your applications run smoothly at any scale.
+                    </p>
+                    <ul class="service-features">
+                        <li>AWS & Azure Deployment</li>
+                        <li>DevOps & CI/CD Pipelines</li>
+                        <li>Database Management</li>
+                        <li>Performance Monitoring</li>
+                    </ul>
+                    <a href="#contact" class="service-btn">Get Started</a>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔧</div>
+                    <h3 class="service-title">Consulting</h3>
+                    <p class="service-description">
+                        Strategic technology consulting to help businesses make informed decisions and optimize their digital presence.
+                    </p>
+                    <ul class="service-features">
+                        <li>Technology Strategy</li>
+                        <li>Code Review & Optimization</li>
+                        <li>Architecture Planning</li>
+                        <li>Team Training & Mentoring</li>
+                    </ul>
+                    <a href="#contact" class="service-btn">Get Started</a>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Performance Optimization</h3>
+                    <p class="service-description">
+                        Enhance your existing applications with performance improvements, security updates, and modern best practices.
+                    </p>
+                    <ul class="service-features">
+                        <li>Website Speed Optimization</li>
+                        <li>SEO Implementation</li>
+                        <li>Security Audits</li>
+                        <li>Code Refactoring</li>
+                    </ul>
+                    <a href="#contact" class="service-btn">Get Started</a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Description -->
-        <div class="description">
-           I'm a creative designer and developer with a passion for web design. I enjoy turning complex problems into simple and beautiful interfaces.
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="fade-in">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A full-stack e-commerce solution with modern UI/UX, secure payment integration, and admin dashboard.</p>
+                </div>
+                <div class="project-card fade-in">
+                    <h3>Task Management App</h3>
+                    <p>A collaborative project management tool with real-time updates, team collaboration features, and analytics.</p>
+                </div>
+                <div class="project-card fade-in">
+                    <h3>Portfolio Website</h3>
+                    <p>A responsive portfolio website showcasing creative design and smooth animations with 3D elements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="fade-in">Get In Touch</h2>
+            <p class="fade-in">Ready to bring your ideas to life? Let's work together on your next project</p>
+            <button class="cta-button fade-in" onclick="openContact()">Contact Me</button>
         </div>
     </section>
 
     <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 20;
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
 
+        // Smooth scrolling function
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Contact function
+        function openContact() {
+            // You can replace this with actual contact form or email
+            window.location.href = 'mailto:nadun@example.com?subject=Project Inquiry';
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        function createBlueParticles() {
+            const particleCount = 30; // Increased particle count
+            const backgroundEffects = document.querySelector('.background-effects');
+            
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'particle';
+                
+                // Create different types of particles
+                if (i % 3 === 0) {
+                    particle.className = 'blue-particle large';
+                } else if (i % 3 === 1) {
+                    particle.className = 'blue-particle trail';
+                } else {
+                    particle.className = 'blue-particle';
+                }
+                
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (Math.random() * 5 + 10) + 's';
-                particlesContainer.appendChild(particle);
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                backgroundEffects.appendChild(particle);
             }
         }
 
-        function createSparkles() {
-            const sparklesContainer = document.getElementById('sparkles');
-            const sparkleCount = 12;
+        // Observe all elements that should fade in
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
 
-            for (let i = 0; i < sparkleCount; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 8 + 's';
-                sparkle.style.animationDuration = (Math.random() * 3 + 6) + 's';
-                sparklesContainer.appendChild(sparkle);
-            }
-        }
-
-        // Mouse movement parallax effect
-        document.addEventListener('mousemove', (e) => {
-            const rays = document.querySelector('.bg-rays');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            rays.style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
+            createBlueParticles();
         });
 
-        // Initialize
-        createParticles();
-        createSparkles(); // Added sparkles initialization
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            // Hide scroll indicator when scrolling
+            if (scrollIndicator) {
+                scrollIndicator.style.opacity = scrolled > 100 ? '0' : '1';
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Initial body opacity
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease-in-out';
     </script>
 </body>
 </html>
